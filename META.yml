@@ -1,11 +1,10 @@
 --- 
 abstract: Encode with autobox
-author: 
-  - Tokuhiro Matsuno <tokuhirom gmail com>
+author: Tokuhiro Matsuno <tokuhirom gmail com>
 build_requires: 
   Test::More: 0
 distribution_type: module
-generated_by: Module::Install version 0.68
+generated_by: Module::Install version 0.650
 license: perl
 meta-spec: 
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
@@ -18,4 +17,4 @@ no_index:
 requires: 
   Encode: 0
   autobox: 0
-version: 0.01
+version: 0.02

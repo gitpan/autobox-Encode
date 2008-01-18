@@ -1,15 +1,22 @@
 package autobox::Encode;
 use strict;
+use charnames ();
 use warnings;
 use autobox;
 use Encode;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 package SCALAR;
 sub encode { Encode::encode($_[1], $_[0], $_[2]) }
 sub decode { Encode::decode($_[1], $_[0], $_[2]) }
 sub is_utf8 { Encode::is_utf8($_[0]) }
+sub from_to { Encode::from_to($_[0], $_[1], $_[2]); $_[0] }
+
+sub charname {
+    my $string = shift;
+    join '', map charnames::viacode(ord), split //, $string;
+}
 
 1;
 
@@ -26,6 +33,11 @@ autobox::Encode - Encode with autobox
 
   "Foo"->decode('utf-8')->encode('utf-8')
 
+  my $latin1_bytes = ...;
+  my $utf8_bytes   = $latin1_bytes->from_to('latin-1' => 'utf-8');
+
+  "\x{1234}"->charname; # "ETHIOPIC SYLLABLE SEE"
+
 =head1 DESCRIPTION
 
 use Encode with autobox!
@@ -36,7 +48,7 @@ Tokuhiro Matsuno <tokuhirom gmail com>
 
 =head1 THANKS
 
-#coderepos
+Tatsuhiko Miyagawa and coderepos committers.
 
 =head1 COPYRIGHT
 
