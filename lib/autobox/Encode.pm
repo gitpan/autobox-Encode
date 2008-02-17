@@ -1,13 +1,20 @@
 package autobox::Encode;
 use strict;
-use charnames ();
 use warnings;
-use autobox;
-use Encode;
+use base qw/autobox/;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
-package SCALAR;
+sub import {
+    shift->SUPER::import( SCALAR => 'autobox::Encode::Scalar' );
+}
+
+package # hide from pause :-)
+    autobox::Encode::Scalar;
+
+use Encode ();
+use charnames ();
+
 sub encode { Encode::encode($_[1], $_[0], $_[2]) }
 sub decode { Encode::decode($_[1], $_[0], $_[2]) }
 sub is_utf8 { Encode::is_utf8($_[0]) }
@@ -28,7 +35,6 @@ autobox::Encode - Encode with autobox
 
 =head1 SYNOPSIS
 
-  use autobox;
   use autobox::Encode;
 
   "Foo"->decode('utf-8')->encode('utf-8')
@@ -49,6 +55,8 @@ Tokuhiro Matsuno <tokuhirom gmail com>
 =head1 THANKS
 
 Tatsuhiko Miyagawa and coderepos committers.
+
+chocolateboy++(enhancment autobox!!)
 
 =head1 COPYRIGHT
 

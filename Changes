@@ -1,5 +1,10 @@
 Revision history for Perl extension autobox::Encode
 
+0.03
+
+    - do not 'use autobox;'.
+      Contributed by: chocolateboy++
+
 0.02
 
     - added $s->from_to and $s->charname

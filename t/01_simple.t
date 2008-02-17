@@ -1,6 +1,5 @@
 use strict;
 use warnings;
-use autobox;
 use autobox::Encode;
 use Encode ();
 use Test::More tests => 8;
